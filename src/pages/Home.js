@@ -81,7 +81,6 @@ const Home = () => {
   const handleTranslationClick = async () => {
     setIsInConversation(false);
     fetchData('STOP')
-    setConversation([]); // Clear the conversation
   };
 
 
