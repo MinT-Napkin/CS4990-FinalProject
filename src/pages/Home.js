@@ -18,15 +18,16 @@ const Home = () => {
   const fetchData = async (userMessage) => {
     setLoading(true);
 
+    // The layout should be something like this after the user ONLY says "STOP" to stop the conversation:
+    
+    // Understood! Here is the translation of our conversation:
+    
+    // Assistant: [assistant response]
+    // User: [user response]
+
     const systemContent = `
     
     The assistant should NEVER say STOP, or include USER in their responses in the conversation.
-    The layout should be something like this after the user ONLY says "STOP" to stop the conversation:
-    
-    Understood! Here is the translation of our conversation:
-    
-    Assistant: [assistant response]
-    User: [user response]
     ....`;
 
     const messages = [
@@ -39,11 +40,12 @@ const Home = () => {
       const openai = new OpenAI({
         organization: `${process.env.REACT_APP_OPENAI_ORGANIZATION_NAME}`, 
         apiKey: `${process.env.REACT_APP_OPENAI_API_KEY}`,
-        dangerouslyAllowBrowser: true
+        dangerouslyAllowBrowser: true,
       });
       const apiResponse = await openai.chat.completions.create({
         model: 'gpt-3.5-turbo',
-        messages: messages
+        messages: messages,
+        temperature: 0,
       });
   
 
